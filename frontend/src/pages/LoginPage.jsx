@@ -11,15 +11,17 @@ export default function LoginPage() {
   const submit = async (e) => {
     e.preventDefault();
     await login(email, password);
-    navigate('/posts');
+    navigate('/dashboard');
   };
 
   return (
-    <form onSubmit={submit}>
-      <h1>Admin Login</h1>
-      <input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
-      <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
-      <button type="submit">Sign in</button>
-    </form>
+    <div className="login-wrap">
+      <form onSubmit={submit} className="card stack login-card">
+        <h1>Admin Login</h1>
+        <input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
+        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
+        <button type="submit">Sign in</button>
+      </form>
+    </div>
   );
 }
