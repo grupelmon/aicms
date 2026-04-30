@@ -26,6 +26,15 @@
 5. Install frontend dependencies and run Vite:
    - Already handled by `frontend` container command on startup.
 
+## Si ves 404 en /login
+1. Recarga la configuración de Nginx dentro del contenedor:
+   - `docker compose exec nginx nginx -t`
+   - `docker compose exec nginx nginx -s reload`
+2. Verifica que el contenedor frontend esté arriba:
+   - `docker compose ps frontend`
+3. Comprueba desde Nginx que resuelve el frontend:
+   - `docker compose exec nginx wget -qO- http://frontend:5173 | head`
+
 ## API authentication
 - Login endpoint: `POST /api/v1/admin/login`
 - Body:
