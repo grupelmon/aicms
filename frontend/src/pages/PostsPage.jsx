@@ -24,14 +24,24 @@ export default function PostsPage() {
   };
 
   return (
-    <div>
-      <h1>Posts</h1>
-      <form onSubmit={createPost}>
-        <input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Title" />
-        <textarea value={content} onChange={(e) => setContent(e.target.value)} placeholder="Content" />
-        <button type="submit">Create</button>
-      </form>
-      <ul>{posts.map((post) => <li key={post.id}>{post.title}</li>)}</ul>
+    <div className="grid posts-layout">
+      <section className="card">
+        <h2>Editor de posts</h2>
+        <form className="stack" onSubmit={createPost}>
+          <label>Título<input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Título del post" /></label>
+          <label>Contenido<textarea value={content} onChange={(e) => setContent(e.target.value)} rows="8" placeholder="Escribe aquí..." /></label>
+          <button type="submit">Guardar borrador</button>
+        </form>
+      </section>
+
+      <section className="card">
+        <h2>Listado de posts</h2>
+        <ul className="post-list">
+          {posts.map((post) => (
+            <li key={post.id}>{post.title}</li>
+          ))}
+        </ul>
+      </section>
     </div>
   );
 }
