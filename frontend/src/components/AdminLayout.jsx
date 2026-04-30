@@ -13,25 +13,32 @@ export default function AdminLayout() {
   const { logout } = useAuth();
 
   return (
-    <div className="app-shell">
-      <aside className="sidebar card">
-        <h2 className="brand">AI CMS</h2>
-        <nav className="menu">
+    <div className="ta-shell">
+      <aside className="ta-sidebar">
+        <div className="ta-brand-wrap">
+          <div className="ta-brand-dot" />
+          <h2 className="ta-brand">TailAdmin CMS</h2>
+        </div>
+
+        <nav className="ta-menu">
+          <p className="ta-menu-title">MENÚ</p>
           {menuItems.map((item) => (
-            <NavLink key={item.path} to={item.path} className={({ isActive }) => `menu-item ${isActive ? 'active' : ''}`}>
-              <span>{item.icon}</span> {item.label}
+            <NavLink key={item.path} to={item.path} className={({ isActive }) => `ta-menu-item ${isActive ? 'active' : ''}`}>
+              <span>{item.icon}</span>
+              <span>{item.label}</span>
             </NavLink>
           ))}
         </nav>
       </aside>
 
-      <main className="content-area">
-        <header className="topbar card">
+      <main className="ta-main">
+        <header className="ta-topbar">
           <div>
+            <p className="ta-topbar-kicker">Backoffice</p>
             <h1>Panel administrativo</h1>
-            <p>Gestión de contenido estilo WordPress con diseño Material.</p>
+            <p className="ta-topbar-subtitle">Base visual inspirada en TailAdmin para gestionar contenido.</p>
           </div>
-          <div className="profile-chip">
+          <div className="ta-profile-chip">
             <img src="https://i.pravatar.cc/64?img=13" alt="perfil" />
             <div>
               <strong>Admin</strong>
@@ -39,6 +46,7 @@ export default function AdminLayout() {
             </div>
           </div>
         </header>
+
         <section className="page-body">
           <Outlet />
         </section>
