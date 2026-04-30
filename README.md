@@ -43,9 +43,11 @@
 - `DELETE /api/v1/posts/{id}`
 
 ## Backoffice pages
-- `/login` admin login form
-- `/posts` protected posts list + create form
+- `http://localhost:8080/login` admin login form
+- `http://localhost:8080/posts` protected posts list + create form
 
 ## Notes
+- Usa una sola URL pública: **http://localhost:8080**.
+- Nginx enruta `/api/*`, `/sanctum/*` y `/up` al backend Laravel, y el resto de rutas al frontend Vite.
 - Ensure an admin user exists with `is_admin = 1`.
 - Sanctum token auth is used with `auth:sanctum` middleware.
