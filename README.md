@@ -22,7 +22,7 @@
    - `docker compose exec app composer install`
 4. Generate app key and run migrations:
    - `docker compose exec app php artisan key:generate`
-   - `docker compose exec app php artisan migrate`
+   - `docker compose exec app php artisan migrate --seed`
 5. Install frontend dependencies and run Vite:
    - Already handled by `frontend` container command on startup.
 
