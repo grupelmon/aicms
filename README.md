@@ -26,6 +26,15 @@
 5. Install frontend dependencies and run Vite:
    - Already handled by `frontend` container command on startup.
 
+## Si ves 404 en /login
+1. Recarga la configuración de Nginx dentro del contenedor:
+   - `docker compose exec nginx nginx -t`
+   - `docker compose exec nginx nginx -s reload`
+2. Verifica que el contenedor frontend esté arriba:
+   - `docker compose ps frontend`
+3. Comprueba desde Nginx que resuelve el frontend:
+   - `docker compose exec nginx wget -qO- http://frontend:5173 | head`
+
 ## API authentication
 - Login endpoint: `POST /api/v1/admin/login`
 - Body:
@@ -43,9 +52,11 @@
 - `DELETE /api/v1/posts/{id}`
 
 ## Backoffice pages
-- `/login` admin login form
-- `/posts` protected posts list + create form
+- `http://localhost:8080/login` admin login form
+- `http://localhost:8080/posts` protected posts list + create form
 
 ## Notes
+- Usa una sola URL pública: **http://localhost:8080**.
+- Nginx enruta `/api/*`, `/sanctum/*` y `/up` al backend Laravel, y el resto de rutas al frontend Vite.
 - Ensure an admin user exists with `is_admin = 1`.
 - Sanctum token auth is used with `auth:sanctum` middleware.
